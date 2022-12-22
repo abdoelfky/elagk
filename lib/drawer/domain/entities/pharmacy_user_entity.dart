@@ -12,14 +12,14 @@ class PharmacyUser extends Equatable {
   // final List<String>? phones;
 
   const PharmacyUser({
-    required this.userId,
-    required this.pharmacyId,
-    required this.pharmacyName,
-    required this.pharmacyEmail,
-    required this.imageUrl,
-    required this.longitude,
-    required this.latitude,
-    required this.territoryId,
+      required this.userId,
+      required this.pharmacyId,
+      required this.pharmacyName,
+      required this.pharmacyEmail,
+      required this.imageUrl,
+      required this.longitude,
+      required this.latitude,
+      required this.territoryId,
     // required this.phones,
   });
 

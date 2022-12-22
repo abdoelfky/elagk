@@ -22,7 +22,7 @@ class AuthTitleAndSubtitle extends StatelessWidget {
         ),
         SizedBox(height: mediaQueryHeight(context) / AppSize.s120),
         Text(
-          authSubtitle,
+          authSubtitle!,
           textAlign: TextAlign.justify,
           style: Theme.of(context).textTheme.titleSmall,
         ),
