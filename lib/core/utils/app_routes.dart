@@ -14,6 +14,7 @@ import 'package:elagk_pharmacy/opening/presentation/screens/offline_widget.dart'
 import 'package:elagk_pharmacy/opening/presentation/screens/splash_screen.dart';
 import 'package:elagk_pharmacy/drawer/presentation/components/drawer_widgets/home_drawer.dart';
 import 'package:elagk_pharmacy/opening/presentation/screens/user_type.dart';
+import 'package:elagk_pharmacy/user_directory/auth/presentation/screens/login_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
@@ -21,6 +22,7 @@ class Routes {
   static const String home = '/';
   static const String notificationsScreen = '/notificationsScreen';
   static const String loginPharmacyScreen = '/loginPharmacyScreen';
+  static const String loginUserScreen = '/loginUserScreen';
   static const String userSelectionScreen = '/UserSelectionScreen';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String otpVerifyScreen = '/otpVerifyScreen';
@@ -58,6 +60,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case Routes.loginPharmacyScreen:
         return MaterialPageRoute(builder: (_) => const LoginPharmacyScreen());
+        case Routes.loginUserScreen:
+      return MaterialPageRoute(builder: (_) => const LoginUserScreen());
       case Routes.userSelectionScreen:
         return MaterialPageRoute(builder: (_) => const UserSelectionScreen());
       case Routes.forgetPasswordScreen:

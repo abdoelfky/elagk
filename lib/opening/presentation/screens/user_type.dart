@@ -41,7 +41,7 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                         'user',
                         'كمستخدم',
                         context,
-                        Routes.loginPharmacyScreen
+                        Routes.loginUserScreen
                     ),
                     SizedBox(height: 15,),
                     BuildItem(MediaQuery.of(context).size,
