@@ -1,20 +1,10 @@
-class SendMailModel{
-  String? message;
 
+import 'package:elagk_pharmacy/user_directory/auth/domain/entities/send_mail_entity.dart';
 
-  SendMailModel({
-    required this.message,
+class SendUserMailModel extends SendUserMail {
+  const SendUserMailModel({required super.message});
 
-  });
-
-  SendMailModel.fromJson(Map<String, dynamic> json){
-    message: json["message"];
-  }
-
-  Map <String,dynamic> toMap()
-  {
-    return {
-      'message':message,
-    };
-  }
+  factory SendUserMailModel.fromJson(Map<String, dynamic> json) => SendUserMailModel(
+        message: json['message'],
+      );
 }

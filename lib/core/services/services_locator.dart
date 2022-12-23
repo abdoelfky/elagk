@@ -27,6 +27,16 @@ import 'package:elagk_pharmacy/drawer/presentation/controller/categories_control
 import 'package:elagk_pharmacy/drawer/presentation/controller/complaints_controller/complaints_bloc.dart';
 import 'package:elagk_pharmacy/drawer/presentation/controller/medicine_controller/medicine_bloc.dart';
 import 'package:elagk_pharmacy/drawer/presentation/controller/pharmacy_user_profile_controller/pharmacy_profile_bloc.dart';
+import 'package:elagk_pharmacy/user_directory/auth/data/datasource/base_auth_remote_datasource.dart';
+import 'package:elagk_pharmacy/user_directory/auth/data/repository/auth_repository.dart';
+import 'package:elagk_pharmacy/user_directory/auth/domain/repository/base_auth_repository.dart';
+import 'package:elagk_pharmacy/user_directory/auth/domain/usecases/activate_email_usecase.dart';
+import 'package:elagk_pharmacy/user_directory/auth/domain/usecases/forget_password_usecase.dart';
+import 'package:elagk_pharmacy/user_directory/auth/domain/usecases/login_usecase.dart';
+import 'package:elagk_pharmacy/user_directory/auth/domain/usecases/reset_password_usecase.dart';
+import 'package:elagk_pharmacy/user_directory/auth/domain/usecases/send_mail_usecase.dart';
+import 'package:elagk_pharmacy/user_directory/auth/presentation/controller/login_pharmacy_controller/user_login_bloc.dart';
+import 'package:elagk_pharmacy/user_directory/auth/presentation/controller/password_controller/password_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 // sl = Service Locator object.
@@ -44,6 +54,10 @@ class ServicesLocator {
     // Auth blocs
     sl.registerFactory<LoginPharmacyBloc>(() => LoginPharmacyBloc(sl()));
     sl.registerFactory<PasswordBloc>(() => PasswordBloc(sl(), sl(), sl(), sl()));
+
+    //auth user blocs
+    sl.registerFactory<LoginUserBloc>(() => LoginUserBloc(sl()));
+    sl.registerFactory<PasswordUserBloc>(() => PasswordUserBloc(sl(), sl(), sl(), sl()));
 
     // Use cases
     // Drawer use cases
@@ -71,15 +85,33 @@ class ServicesLocator {
     sl.registerLazySingleton<ResetPasswordUseCase>(
         () => ResetPasswordUseCase(sl()));
 
+
+    // Auth user use cases
+    sl.registerLazySingleton<UserLoginUseCase>(() => UserLoginUseCase(sl()));
+    sl.registerLazySingleton<ForgetUserPasswordUseCase>(
+            () => ForgetUserPasswordUseCase(sl()));
+    sl.registerLazySingleton<ActivateUserEmailUseCase>(
+            () => ActivateUserEmailUseCase(sl()));
+    sl.registerLazySingleton<SendUserMailUseCase>(() => SendUserMailUseCase(sl()));
+    sl.registerLazySingleton<ResetUserPasswordUseCase>(
+            () => ResetUserPasswordUseCase(sl()));
+
+
+
     // Repository
     sl.registerLazySingleton<BaseDrawerRepository>(
         () => DrawerRepository(sl()));
     sl.registerLazySingleton<BaseAuthRepository>(() => AuthRepository(sl()));
+
+    sl.registerLazySingleton<UserBaseAuthRepository>(() => UserAuthRepository(sl()));
 
     // Data Source
     sl.registerLazySingleton<BaseDrawerRemoteDataSource>(
         () => DrawerRemoteDataSource());
     sl.registerLazySingleton<BaseAuthRemoteDataSource>(
         () => AuthRemoteDataSource());
+    sl.registerLazySingleton<UserBaseAuthRemoteDataSource>(
+            () => UserAuthRemoteDataSource());
+
   }
 }

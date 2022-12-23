@@ -1,15 +1,18 @@
+import 'package:elagk_pharmacy/auth/presentation/components/logo_widget.dart';
+import 'package:elagk_pharmacy/auth/presentation/components/main_button.dart';
+import 'package:elagk_pharmacy/auth/presentation/components/screen_background.dart';
+import 'package:elagk_pharmacy/auth/presentation/controller/password_controller/password_bloc.dart';
 import 'package:elagk_pharmacy/core/global/app_colors.dart';
 import 'package:elagk_pharmacy/core/utils/app_strings.dart';
 import 'package:elagk_pharmacy/core/utils/app_values.dart';
+import 'package:elagk_pharmacy/core/utils/enums.dart';
+import 'package:elagk_pharmacy/user_directory/auth/presentation/controller/password_controller/password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
-import '../components/logo_widget.dart';
-import '../components/main_button.dart';
-import '../components/screen_background.dart';
-
-class OTPVerifyScreen extends StatelessWidget {
-  const OTPVerifyScreen({Key? key, required this.email}) : super(key: key);
+class OTPUserVerifyScreen extends StatelessWidget {
+  const OTPUserVerifyScreen({Key? key, required this.email}) : super(key: key);
 
   final String email;
 
@@ -46,70 +49,70 @@ class OTPVerifyScreen extends StatelessWidget {
                       ),
                     ]),
                   ),
-                  // BlocBuilder<PasswordBloc, PasswordState>(
-                  //   builder: (context, state) {
-                  //     return OtpTextField(
-                  //       numberOfFields: AppSize.si6,
-                  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //       borderColor: AppColors.blue,
-                  //       focusedBorderColor: AppColors.blue,
-                  //       keyboardType: TextInputType.phone,
-                  //       margin:
-                  //           const EdgeInsets.symmetric(vertical: AppMargin.m22),
-                  //       crossAxisAlignment: CrossAxisAlignment.center,
-                  //       cursorColor: AppColors.blue,
-                  //       // set to true to show as box or false to show as dash
-                  //       showFieldAsBox: true,
-                  //       textStyle:
-                  //           Theme.of(context).textTheme.displayLarge!.copyWith(
-                  //                 color: AppColors.blue,
-                  //               ),
-                  //       //runs when a code is typed in
-                  //       // onCodeChanged: (String code) {
-                  //       // handle validation or checks here
-                  //       // },
-                  //       // runs when every textField is filled
-                  //       onSubmit: (String verificationCode) {
-                  //         context.read<PasswordBloc>().submitPinCode(
-                  //               int.parse(verificationCode),
-                  //             );
-                  //       }, // end onSubmit
-                  //     );
-                  //   },
-                  // ),
+                  BlocBuilder<PasswordUserBloc, PasswordUserState>(
+                    builder: (context, state) {
+                      return OtpTextField(
+                        numberOfFields: AppSize.si6,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        borderColor: AppColors.blue,
+                        focusedBorderColor: AppColors.blue,
+                        keyboardType: TextInputType.phone,
+                        margin:
+                            const EdgeInsets.symmetric(vertical: AppMargin.m22),
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        cursorColor: AppColors.blue,
+                        // set to true to show as box or false to show as dash
+                        showFieldAsBox: true,
+                        textStyle:
+                            Theme.of(context).textTheme.displayLarge!.copyWith(
+                                  color: AppColors.blue,
+                                ),
+                        //runs when a code is typed in
+                        // onCodeChanged: (String code) {
+                        // handle validation or checks here
+                        // },
+                        // runs when every textField is filled
+                        onSubmit: (String verificationCode) {
+                          context.read<PasswordUserBloc>().submitPinCode(
+                                int.parse(verificationCode),
+                              );
+                        }, // end onSubmit
+                      );
+                    },
+                  ),
                   SizedBox(height: mediaQueryHeight(context) / AppSize.s38),
-                  // BlocBuilder<PasswordBloc, PasswordState>(
-                  //   builder: (context, state) {
-                  //     switch (state.emailActivationButtonState) {
-                  //       case ButtonState.loading:
-                  //         return const Center(
-                  //           child: CircularProgressIndicator(
-                  //             color: AppColors.primary,
-                  //           ),
-                  //         );
-                  //       case ButtonState.static:
-                  //         return MainButton(
-                  //             title: AppStrings.verify,
-                  //             onPressed: () {
-                  //               if (context
-                  //                       .read<PasswordBloc>()
-                  //                       .pinCode
-                  //                       .toString()
-                  //                       .length ==
-                  //                   6) {
-                  //                 context.read<PasswordBloc>().add(
-                  //                       ActivationEmailEvent(
-                  //                         context: context,
-                  //                         code: context
-                  //                             .read<PasswordBloc>()
-                  //                             .pinCode!,
-                  //                       ),
-                  //                     );
-                  //               }
-                  //             });
-                  //     }return const SizedBox();
-                  //   },
-                  // ),
+                  BlocBuilder<PasswordUserBloc, PasswordUserState>(
+                    builder: (context, state) {
+                      switch (state.emailActivationButtonState) {
+                        case ButtonState.loading:
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.primary,
+                            ),
+                          );
+                        case ButtonState.static:
+                          return MainButton(
+                              title: AppStrings.verify,
+                              onPressed: () {
+                                if (context
+                                        .read<PasswordUserBloc>()
+                                        .pinCode
+                                        .toString()
+                                        .length ==
+                                    6) {
+                                  context.read<PasswordUserBloc>().add(
+                                        ActivationUserEmailEvent(
+                                          context: context,
+                                          code: context
+                                              .read<PasswordUserBloc>()
+                                              .pinCode!,
+                                        ),
+                                      );
+                                }
+                              });
+                      }
+                    },
+                  ),
                 ],
               ),
             ),

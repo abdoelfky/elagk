@@ -14,7 +14,11 @@ import 'package:elagk_pharmacy/opening/presentation/screens/offline_widget.dart'
 import 'package:elagk_pharmacy/opening/presentation/screens/splash_screen.dart';
 import 'package:elagk_pharmacy/drawer/presentation/components/drawer_widgets/home_drawer.dart';
 import 'package:elagk_pharmacy/opening/presentation/screens/user_type.dart';
-import 'package:elagk_pharmacy/user_directory/auth/presentation/screens/login_user_screen.dart';
+import 'package:elagk_pharmacy/user_directory/auth/presentation/screens/forget_password_screen.dart';
+import 'package:elagk_pharmacy/user_directory/auth/presentation/screens/otp_verify_screen.dart';
+import 'package:elagk_pharmacy/user_directory/auth/presentation/screens/reset_password_screen.dart';
+import 'package:elagk_pharmacy/user_directory/auth/presentation/screens/user_login_screen.dart';
+import 'package:elagk_pharmacy/user_directory/register/presentation/register_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
@@ -23,6 +27,10 @@ class Routes {
   static const String notificationsScreen = '/notificationsScreen';
   static const String loginPharmacyScreen = '/loginPharmacyScreen';
   static const String loginUserScreen = '/loginUserScreen';
+  static const String registerUserScreen = '/registerUserScreen';
+  static const String forgetUserPasswordScreen = '/ForgetUserPasswordScreen';
+  static const String OTPUserVerifyScreen = '/OTPUserVerifyScreen';
+  static const String resetUserPasswordScreen = '/ResetUserPasswordScreen';
   static const String userSelectionScreen = '/UserSelectionScreen';
   static const String forgetPasswordScreen = '/forgetPasswordScreen';
   static const String otpVerifyScreen = '/otpVerifyScreen';
@@ -60,8 +68,19 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case Routes.loginPharmacyScreen:
         return MaterialPageRoute(builder: (_) => const LoginPharmacyScreen());
-        case Routes.loginUserScreen:
-      return MaterialPageRoute(builder: (_) => const LoginUserScreen());
+      case Routes.loginUserScreen:
+        return MaterialPageRoute(builder: (_) => const LoginUserScreen());
+      case Routes.registerUserScreen:
+        return MaterialPageRoute(builder: (_) => const RegisterUserScreen());
+      case Routes.OTPUserVerifyScreen:
+        return MaterialPageRoute(builder: (_) {
+          final args = routeSettings.arguments as OTPArguments;
+          return OTPUserVerifyScreen(email: args.email);
+        });
+      case Routes.resetUserPasswordScreen:
+        return MaterialPageRoute(builder: (_) => const ResetUserPasswordScreen());
+      case Routes.forgetUserPasswordScreen:
+        return MaterialPageRoute(builder: (_) => const ForgetUserPasswordScreen());
       case Routes.userSelectionScreen:
         return MaterialPageRoute(builder: (_) => const UserSelectionScreen());
       case Routes.forgetPasswordScreen:

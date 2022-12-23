@@ -9,6 +9,8 @@ import 'package:elagk_pharmacy/drawer/presentation/controller/about_us_controlle
 import 'package:elagk_pharmacy/drawer/presentation/controller/categories_controller/categories_bloc.dart';
 import 'package:elagk_pharmacy/drawer/presentation/controller/medicine_controller/medicine_bloc.dart';
 import 'package:elagk_pharmacy/drawer/presentation/controller/pharmacy_user_profile_controller/pharmacy_profile_bloc.dart';
+import 'package:elagk_pharmacy/user_directory/auth/presentation/controller/login_pharmacy_controller/user_login_bloc.dart';
+import 'package:elagk_pharmacy/user_directory/auth/presentation/controller/password_controller/password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +26,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (BuildContext context) => sl<LoginPharmacyBloc>()),
+        BlocProvider(create: (BuildContext context) => sl<LoginUserBloc>()),
         BlocProvider(create: (BuildContext context) => sl<PasswordBloc>()),
+        BlocProvider(create: (BuildContext context) => sl<PasswordUserBloc>()),
         BlocProvider(create: (BuildContext context) => sl<AboutUsBloc>()..add(const GetContactUsEvent())..add(const GetAboutUsFirstEvent())..add(const GetAboutUsSecondEvent())),
         BlocProvider(create: (BuildContext context) => sl<MedicineBloc>()),
         BlocProvider(create: (BuildContext context) => sl<PharmacyProfileBloc>()..add(const GetPharmacyUserProfileEvent())),

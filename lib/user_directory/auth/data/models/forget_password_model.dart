@@ -1,20 +1,9 @@
-class ForgetPasswordModel{
-  String? email;
+import 'package:elagk_pharmacy/auth/domain/entities/forget_password_entity.dart';
+import 'package:elagk_pharmacy/user_directory/auth/domain/entities/forget_password_entity.dart';
 
+class ForgetUserPasswordModel extends ForgetUserPassword {
+  const ForgetUserPasswordModel({required super.email});
 
-  ForgetPasswordModel({
-    required this.email,
-
-  });
-
-  ForgetPasswordModel.fromJson(Map<String, dynamic> json){
-    email: json["email"];
-  }
-
-  Map <String,dynamic> toMap()
-  {
-    return {
-      'email':email,
-    };
-  }
+  factory ForgetUserPasswordModel.fromJson(String jsonData) =>
+      ForgetUserPasswordModel(email: jsonData);
 }
